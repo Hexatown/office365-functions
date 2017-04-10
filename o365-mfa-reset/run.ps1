@@ -1,15 +1,15 @@
-if ($_req -eq $null){
-    $_res = "$PSScriptRoot\output.json"
-    $_req = "$PSScriptRoot\input.json"
+if ($bindIn -eq $null){
+    $bindIn = "$PSScriptRoot\input.json"
+    $bindOut = "$PSScriptRoot\output.json"
 }
 
-$req = Get-Content $_req -Raw
-$params =  ConvertFrom-Json -InputObject $req
+$input = Get-Content $bindIn -Raw
+$params =  ConvertFrom-Json -InputObject $input
 $upn = $params.body.upn
 
 if($upn -eq $null){
 
-    exit;
+    exit
 }
 
 
