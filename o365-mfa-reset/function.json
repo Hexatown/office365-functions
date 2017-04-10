@@ -11,7 +11,7 @@
     {
       "type": "table",
       "name": "res",
-      "tableName": "o365-mfa-reset",
+      "tableName": "o365mfareset",
       "connection": "testnetscollaboration",
       "direction": "out"
     }
