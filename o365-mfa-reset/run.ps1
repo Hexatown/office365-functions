@@ -1,11 +1,11 @@
-
 if ($triggerInput -eq $null){
-    $out = "$PSScriptRoot\output.json"
+    $res = "$PSScriptRoot\output.json"
     $triggerInput = "$PSScriptRoot\input.json"
 }
 
 
-$input = Get-Content $triggerInput -Raw
-$request =  ConvertFrom-Json -InputObject $input
+$req = Get-Content $triggerInput -Raw
+$requestBody =  ConvertFrom-Json -InputObject $req
+$name = $requestBody.body.mailbox
 
-Write-Output $request
+Write-Output "Resetting password for $name"
