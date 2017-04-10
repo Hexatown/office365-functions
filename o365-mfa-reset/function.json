@@ -2,7 +2,7 @@
   "disabled": false,
   "bindings": [
     {
-      "name": "bindIn",
+      "name": "triggerInput",
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "o365-mfa-reset",
@@ -10,7 +10,7 @@
     },
     {
       "type": "table",
-      "name": "bindOut",
+      "name": "res",
       "tableName": "o365mfareset",
       "connection": "",
       "direction": "out"

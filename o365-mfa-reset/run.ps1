@@ -1,10 +1,10 @@
-if ($bindIn -eq $null){
-    $bindIn = "$PSScriptRoot\input.json"
-    $bindOut = "$PSScriptRoot\output.json"
+if ($triggerInput -eq $null){
+    $res = "$PSScriptRoot\output.json"
+    $triggerInput = "$PSScriptRoot\input.json"
 }
 
-$input = Get-Content $bindIn -Raw
-$params =  ConvertFrom-Json -InputObject $input
+$req = Get-Content $triggerInput -Raw
+$params =  ConvertFrom-Json -InputObject $req
 $upn = $params.body.upn
 
 if($upn -eq $null){
