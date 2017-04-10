@@ -1,0 +1,19 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "name": "triggerInput",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "o365-mfa-reset",
+      "connection": "testnetscollaboration"
+    },
+    {
+      "type": "table",
+      "name": "res",
+      "tableName": "o365-mfa-reset",
+      "connection": "testnetscollaboration",
+      "direction": "out"
+    }
+  ]
+}
