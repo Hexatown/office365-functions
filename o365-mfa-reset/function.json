@@ -6,13 +6,13 @@
       "type": "queueTrigger",
       "direction": "in",
       "queueName": "o365-mfa-reset",
-      "connection": "testnetscollaboration"
+      "connection": "AzureWebJobsStorage"
     },
     {
       "type": "table",
       "name": "res",
       "tableName": "o365mfareset",
-      "connection": "testnetscollaboration",
+      "connection": "AzureWebJobsStorage",
       "direction": "out"
     }
   ]
