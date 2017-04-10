@@ -1,4 +1,5 @@
 {
-  "body" : {"mailbox":"ngjoh@nets.eu"},
-  "id" : "testdata"
+    "body" : {
+        "upn": "fmavr-testuser@nets.eu"
+    }
 }
