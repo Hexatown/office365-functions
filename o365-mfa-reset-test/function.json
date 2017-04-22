@@ -2,9 +2,11 @@
   "disabled": false,
   "bindings": [
     {
-      "type": "manualTrigger",
+      "name": "req",
+      "type": "queueTrigger",
       "direction": "in",
-      "name": "req"
+      "queueName": "o365-mfa-reset",
+      "connection": ""
     },
     {
       "type": "table",
