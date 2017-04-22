@@ -1,0 +1,19 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "name": "req",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "o365-mfa-reset",
+      "connection": ""
+    },
+    {
+      "type": "table",
+      "name": "res",
+      "tableName": "o365mfareset",
+      "connection": "",
+      "direction": "out"
+    }
+  ]
+}
