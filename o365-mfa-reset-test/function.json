@@ -2,13 +2,15 @@
   "disabled": false,
   "bindings": [
     {
-      "name": "req",
-      "type": "httpTrigger",
-      "direction": "in"
+      "type": "manualTrigger",
+      "direction": "in",
+      "name": "input"
     },
     {
+      "type": "table",
       "name": "res",
-      "type": "http",
+      "tableName": "o365mfareset",
+      "connection": "",
       "direction": "out"
     }
   ]
