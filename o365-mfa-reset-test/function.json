@@ -4,7 +4,7 @@
     {
       "type": "manualTrigger",
       "direction": "in",
-      "name": "input"
+      "name": "req"
     },
     {
       "type": "table",
