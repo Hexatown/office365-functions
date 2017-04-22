@@ -9,6 +9,11 @@
       "connection": ""
     },
     {
+      "type": "manualTrigger",
+      "direction": "in",
+      "name": "req"
+    },
+    {
       "type": "table",
       "name": "res",
       "tableName": "o365mfareset",
