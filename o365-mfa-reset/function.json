@@ -3,10 +3,9 @@
   "bindings": [
     {
       "name": "req",
-      "type": "queueTrigger",
+      "type": "httpTrigger",
       "direction": "in",
-      "queueName": "o365-mfa-reset",
-      "connection": ""
+      "authLevel": "function"
     },
     {
       "type": "table",
