@@ -1,7 +1,7 @@
 # Get request data and meta
 $body = Get-Content $req -Raw | ConvertFrom-Json
-$data = $requestBody.data
-$meta = $requestBody.meta
+$data = $body.data
+$meta = $body.meta
 
 $result = @{}
 $result.id = $body.id
