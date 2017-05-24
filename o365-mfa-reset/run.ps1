@@ -3,10 +3,12 @@ $body = Get-Content $req -Raw | ConvertFrom-Json
 $data = $body.data
 $meta = $body.meta
 
+Write-Output $body
+
 $result = @{}
 $result.id = $body.id
-$output.RowKey = $body.id
-$output.PartitionKey = $data.type
+$result.RowKey = $body.id
+$result.PartitionKey = $data.type
 $result.requester = $meta.requester
 $result.type = $data.type
 $result.email = $data.attributes.email
