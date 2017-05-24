@@ -6,8 +6,8 @@ $meta = $body.meta
 Write-Output $body
 
 $result = @{}
-$result.id = $body.id
-$result.RowKey = $body.id
+$result.uuid = $meta.uuid
+$result.RowKey = $meta.uuid
 $result.PartitionKey = $data.type
 $result.requester = $meta.requester
 $result.type = $data.type
