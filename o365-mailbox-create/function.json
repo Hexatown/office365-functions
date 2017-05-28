@@ -1,0 +1,19 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "type": "queueTrigger",
+      "name": "req",
+      "queueName": "o365-mailbox-create",
+      "connection": "",
+      "direction": "in"
+    },
+    {
+      "type": "table",
+      "name": "res",
+      "tableName": "o365mailboxcreate",
+      "connection": "",
+      "direction": "out"
+    }
+  ]
+}
