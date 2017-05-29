@@ -4,14 +4,14 @@
     {
       "type": "queueTrigger",
       "name": "req",
-      "queueName": "o365-mailbox-create",
+      "queueName": "o365-mailbox",
       "connection": "",
       "direction": "in"
     },
     {
       "type": "table",
       "name": "res",
-      "tableName": "o365mailboxcreate",
+      "tableName": "o365mailbox",
       "connection": "",
       "direction": "out"
     }
