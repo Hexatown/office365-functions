@@ -14,14 +14,15 @@ Function O365-Connect{
 
     param(
         [String] $upn,
-        [String] $secureString
+        [String] $pwd
     )
 
 	Import-Module MSOnline
     Try{
         # Using SecureString instead
 
-        $pass = convertto-securestring -String $secureString
+        $pass = ConvertTo-SecureString $pwd -AsPlainText -Force
+        #$pass = convertto-securestring -String $secureString
         $cred = New-Object -TypeName System.Management.Automation.PSCredential -argumentlist $upn,$pass
         Connect-MSOLService -Credential $cred
 
@@ -38,11 +39,11 @@ Function O365-Connect{
         $eMessage = $e.Message
         $eItem = $e.ItemName
 
-        Write-Host '==========================='
-		Write-Host 'Error:'
-		Write-Host $('Message: '+$eMessage)
-		Write-Host $('Item: '+$eItem)
-		Write-Host '==========================='
+        Write-Output '==========================='
+		Write-Output 'Error:'
+		Write-Output $('Message: '+$eMessage)
+		Write-Output $('Item: '+$eItem)
+		Write-Output '==========================='
 
         exit
     }
@@ -135,7 +136,7 @@ Function O365-Mailbox-Create{
 # Main             #
 ####################
 
-O365-Connect -upn $env:O365_ADMIN_UPN -secureString $env:O365_ADMIN_SECURE_STRING
+O365-Connect -upn $env:O365_ADMIN_UPN -secureString $env:O365_ADMIN_PWD
 O365-Mailbox-Create -upn $data.attributes.email -name $data.attributes.name -owner $data.attributes.owner
 
 
