@@ -42,7 +42,7 @@ Function O365-Mailbox-Create{
     $smbacl = Get-DistributionGroup -Identity ("smbacl-" + $upnAlias) -ErrorAction SilentlyContinue
     if($smbacl -ne $null){
         $output.detail = 'ACL group already exists!'
-        $output.error = $true
+        $output.status = 2
 
         return $output
     }
@@ -51,7 +51,7 @@ Function O365-Mailbox-Create{
     $mailbox = Get-Mailbox  -Identity  $upn -ErrorAction SilentlyContinue
     if($mailbox -ne $null){
         $output.detail = 'Mailbox already exists!'
-        $output.error = $true
+        $output.status = 2
 
         return $output
     }
@@ -67,11 +67,6 @@ Function O365-Mailbox-Create{
     # Create mailbox
     $mbx = New-Mailbox -Name $name -Alias $upnAlias -Shared -ErrorAction SilentlyContinue
     if($mbx -ne $null){
-        Write-Output "Not equal null"
-
-        Write-Output $aclgroup.Identity
-        Write-Output $mbx.Identity
-
         # Add quota
         Set-Mailbox $upn -ProhibitSendReceiveQuota 5GB -ProhibitSendQuota 4.75GB -IssueWarningQuota 4.5GB
 
@@ -80,19 +75,10 @@ Function O365-Mailbox-Create{
 
         # Add to MemberOf on the maibox
         Add-DistributionGroupMember -Identity $aclgroup.Identity -Member $mbx.Identity -ErrorAction SilentlyContinue
-
-    }else{
-        Write-Output $aclgroup.Identity
-        Write-Output $mbx.Identity
-        Write-Output "Equal null"
     }
 
-
-
-    $output.upn = $upn
-    $output.alias = $upnAlias
-    $output.domain = $upnDomain
-    $output.message = 'Mailbox created'
+    $output.detail = 'Mailbox created'
+    $output.status = 1
 
     return $output
 }
@@ -112,13 +98,11 @@ $meta = $body.meta
 #
 # Main
 #
-O365-Mailbox-Create -upn $data.attributes.email -name $data.attributes.name -owner $data.attributes.owner
+$res = O365-Mailbox-Create -upn $data.attributes.email -name $data.attributes.name -owner $data.attributes.owner
 
 #
 # Output
 #
-
-#Write-Output $body
 
 $result = @{}
 $result.uuid = $meta.uuid
@@ -129,8 +113,9 @@ $result.type = $data.type
 $result.name = $data.attributes.name
 $result.email = $data.attributes.email
 $result.owner = $data.attributes.owner
+$result.status = $res.status # Status (1 = Created, 2 = Exists)
+$result.detail = $res.detail
 
 $json = ConvertTo-Json -InputObject $result
-#Write-Output $json
 
 Out-File -Encoding Ascii -FilePath $res -inputObject $json
