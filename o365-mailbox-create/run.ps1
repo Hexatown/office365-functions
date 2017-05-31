@@ -98,7 +98,7 @@ $meta = $body.meta
 #
 # Main
 #
-$res = O365-Mailbox-Create -upn $data.attributes.email -name $data.attributes.name -owner $data.attributes.owner
+$r = O365-Mailbox-Create -upn $data.attributes.email -name $data.attributes.name -owner $data.attributes.owner
 
 #
 # Output
@@ -113,8 +113,8 @@ $result.type = $data.type
 $result.name = $data.attributes.name
 $result.email = $data.attributes.email
 $result.owner = $data.attributes.owner
-$result.status = $res.status # Status (1 = Created, 2 = Exists)
-$result.detail = $res.detail
+$result.status = $r.status # Status (1 = Created, 2 = Exists)
+$result.detail = $r.detail
 
 $json = ConvertTo-Json -InputObject $result
 
