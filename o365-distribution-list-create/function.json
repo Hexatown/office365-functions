@@ -4,14 +4,14 @@
     {
       "type": "queueTrigger",
       "name": "req",
-      "queueName": "o365-distributionlists",
+      "queueName": "o365-dls",
       "connection": "",
       "direction": "in"
     },
     {
       "type": "table",
       "name": "res",
-      "tableName": "o365distributionlists",
+      "tableName": "o365dls",
       "connection": "",
       "direction": "out"
     }
