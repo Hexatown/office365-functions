@@ -118,4 +118,6 @@ $result.detail = $r.detail
 
 $json = ConvertTo-Json -InputObject $result
 
+Write-Output $json
+
 Out-File -Encoding Ascii -FilePath $res -inputObject $json

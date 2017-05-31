@@ -40,9 +40,9 @@ Function O365-Distribution-List-Create{
         return $output
     }
 
-    New-DistributionGroup -Alias ($upnAlias) -DisplayName ($name) -ManagedBy $owner -PrimarySmtpAddress $upn -CopyOwnerToMember -Name ($upn)
+    $dist = New-DistributionGroup -Alias ($upnAlias) -DisplayName ($name) -ManagedBy $owner -PrimarySmtpAddress $upn -CopyOwnerToMember -Name ($upn)
 
-    $output.detail = 'DL created'
+    $output.detail = 'DL created.'
     $output.status = 1
 
     return $output
@@ -65,6 +65,8 @@ $meta = $body.meta
 #
 $r = O365-Distribution-List-Create -upn $data.attributes.email -name $data.attributes.name -owner $data.attributes.owner
 
+Write-Output $r
+
 #
 # Output
 #
@@ -82,5 +84,7 @@ $result.status = $r.status # Status (1 = Created, 2 = Exists)
 $result.detail = $r.detail
 
 $json = ConvertTo-Json -InputObject $result
+
+Write-Output $json
 
 Out-File -Encoding Ascii -FilePath $res -inputObject $json
