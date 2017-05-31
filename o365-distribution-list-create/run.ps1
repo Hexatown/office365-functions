@@ -32,7 +32,7 @@ Function O365-Distribution-List-Create{
     $upnDomain  = $upnSplit[1]
 
     # Check if DL already exists
-    $exists = Get-DistributionGroup -Identity ("dist-" + $upn) -ErrorAction SilentlyContinue
+    $exists = Get-DistributionGroup -Identity ($upn) -ErrorAction SilentlyContinue
     if($exists -ne $null){
         $output.detail = 'DL exists!'
         $output.status = 2
