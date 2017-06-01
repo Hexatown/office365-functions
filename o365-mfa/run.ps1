@@ -102,13 +102,19 @@ O365-Connect -upn $env:O365_ADMIN_UPN -pwd $env:O365_ADMIN_PWD
 $body = Get-Content $req -Raw | ConvertFrom-Json
 $data = $body.data
 $meta = $body.meta
+$method = $data.attributes.method
 
 #
 # Main
 #
-#$r = O365-Distribution-List-Create -upn $data.attributes.email -name $data.attributes.name -owner $data.attributes.owner
 
-Write-Output $r
+if($method -eq 'enable'){
+    $r = O365-MFA-Enable -upn $data.attributes.email
+}elseif($method -eq 'disable'){
+    $r = O365-MFA-Disable -upn $data.attributes.email
+}else{
+    $r = O365-MFA-Reset -upn $data.attributes.email
+}
 
 #
 # Output
@@ -120,10 +126,9 @@ $result.RowKey = $meta.uuid
 $result.PartitionKey = $data.type
 $result.requester = $meta.requester
 $result.type = $data.type
-$result.name = $data.attributes.name
 $result.email = $data.attributes.email
-$result.owner = $data.attributes.owner
-$result.status = $r.status # Status (1 = Created, 2 = Exists)
+$result.method = $data.attributes.method
+$result.status = $r.status # Status (1 = Created, 2 = Exists, 3 = Not enabled/exists)
 $result.detail = $r.detail
 
 $json = ConvertTo-Json -InputObject $result
