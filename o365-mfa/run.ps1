@@ -83,7 +83,7 @@ Function O365-MFA-Disable{
         $output.detail = 'MFA disabled.'
         $output.status = 1
     }else{
-        $output.detail = 'MFA not enabled!'
+        $output.detail = 'MFA is already disabled!'
         $output.status = 3
     }
 
