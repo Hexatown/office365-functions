@@ -84,6 +84,7 @@ $result.PartitionKey = $data.type
 $result.requester = $meta.requester
 $result.type = $data.type
 $result.email = $data.attributes.email
+$result.message = $data.attributes.message
 $result.method = $data.attributes.method
 $result.status = $r.status # Status (1 = Created, 2 = Exists, 3 = Not enabled/exists)
 $result.detail = $r.detail
