@@ -91,7 +91,7 @@ O365-Connect -upn $env:O365_ADMIN_UPN -pwd $env:O365_ADMIN_PWD
 # Query params           
 #
 
-$body = Get-Content $req -Raw | ConvertFrom-Json
+$body = Get-Content $req -Raw -Encoding UTF8 | ConvertFrom-Json
 $data = $body.data
 $meta = $body.meta
 
@@ -120,4 +120,4 @@ $json = ConvertTo-Json -InputObject $result
 
 Write-Output $json
 
-Out-File -Encoding Ascii -FilePath $res -inputObject $json
+Out-File -Encoding UTF8 -FilePath $res -inputObject $json
