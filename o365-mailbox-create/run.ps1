@@ -120,4 +120,4 @@ $json = ConvertTo-Json -InputObject $result
 
 Write-Output $json
 
-Out-File -Encoding Ascii -FilePath $res -inputObject $json -Encoding UTF8
+Out-File -Encoding UTF8 -FilePath $res -inputObject $json
