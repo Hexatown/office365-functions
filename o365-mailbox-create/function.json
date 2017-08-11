@@ -1,19 +1,16 @@
 {
-  "disabled": false,
   "bindings": [
     {
-      "type": "queueTrigger",
       "name": "req",
-      "queueName": "o365-mailboxes",
-      "connection": "",
-      "direction": "in"
+      "type": "httpTrigger",
+      "direction": "in",
+      "authLevel": "function"
     },
     {
-      "type": "table",
       "name": "res",
-      "tableName": "o365mailboxes",
-      "connection": "",
+      "type": "http",
       "direction": "out"
     }
-  ]
+  ],
+  "disabled": false
 }
