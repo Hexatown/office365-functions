@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Hexatown Office 365 API",
-    "version": "0.0.2",
+    "version": "1.0.0",
     "title": "Hexatown Office 365",
     "contact": {
       "email": "niels@365admin.net"
@@ -108,6 +108,92 @@
           }
         }
       }
+    },
+    "/o365-mailbox-create": {
+      "post": {
+        "tags": [
+          "admins"
+        ],
+        "summary": "Create a Shared Mailbox and a corresponding distributions to be used for managing access",
+        "operationId": "MailboxCreate",
+        "description": "Create shared mailbox\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Shared Mailbox Create Request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MailboxCreateRequest"
+            }
+          }
+        ],
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Result of operation",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    },
+    "/o365-distribution-list-create": {
+      "post": {
+        "tags": [
+          "admins"
+        ],
+        "summary": "Create a Distribution List",
+        "operationId": "DistributionListCreate",
+        "description": "Create distribution list\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Distribution List Create Request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DistributionListCreateRequest"
+            }
+          }
+        ],
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Result of operation",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -135,6 +221,36 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/MfaRequestAttributes"
+        },
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      }
+    },
+    "MailboxCreateRequest": {
+      "type": "object",
+      "required": [
+        "data",
+        "meta"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MailboxCreateRequestAttributes"
+        },
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      }
+    },
+    "DistributionListCreateRequest": {
+      "type": "object",
+      "required": [
+        "data",
+        "meta"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/DistributionListCreateRequestAttributes"
         },
         "meta": {
           "$ref": "#/definitions/Meta"
@@ -227,6 +343,72 @@
           ],
           "default": "reset",
           "example": "reset"
+        }
+      }
+    },
+    "MailboxCreateRequestAttributes": {
+      "type": "object",
+      "required": [
+        "attributes"
+      ],
+      "properties": {
+        "attributes": {
+          "$ref": "#/definitions/MailboxCreateAttributes"
+        }
+      }
+    },
+    "MailboxCreateAttributes": {
+      "type": "object",
+      "required": [
+        "email",
+        "name",
+        "owner"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "shared@domain.root"
+        },
+        "name": {
+          "type": "string",
+          "example": "Shared Mailbox Name"
+        },
+        "owner": {
+          "type": "string",
+          "example": "user@domain.root"
+        }
+      }
+    },
+    "DistributionListCreateRequestAttributes": {
+      "type": "object",
+      "required": [
+        "attributes"
+      ],
+      "properties": {
+        "attributes": {
+          "$ref": "#/definitions/DistributionListCreateAttributes"
+        }
+      }
+    },
+    "DistributionListCreateAttributes": {
+      "type": "object",
+      "required": [
+        "email",
+        "name",
+        "owner"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "distribution@domain.root"
+        },
+        "name": {
+          "type": "string",
+          "example": "Distribution List Name"
+        },
+        "owner": {
+          "type": "string",
+          "example": "user@domain.root"
         }
       }
     },
