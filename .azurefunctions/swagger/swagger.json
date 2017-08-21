@@ -1,0 +1,184 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Hexatown Office 365 API",
+    "version": "0.0.1",
+    "title": "Hexatown Office 365",
+    "contact": {
+      "email": "niels@365admin.net"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "tags": [
+    {
+      "name": "admins",
+      "description": "Secured Admin-only calls"
+    },
+    {
+      "name": "developers",
+      "description": "Operations available to regular developers"
+    }
+  ],
+  "paths": {
+    "/o365-autoreply": {
+      "post": {
+        "tags": [
+          "admins"
+        ],
+        "summary": "Manage the auto reply settings of a given mailbox",
+        "operationId": "autoReply",
+        "description": "You can set or remove the out of office message\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Out of Office message control",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AutoReplyRequest"
+            }
+          }
+        ],
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Result of operation",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AutoReplyRequest": {
+      "type": "object",
+      "required": [
+        "data",
+        "meta"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/AutoReplyRequestAttributes"
+        },
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      }
+    },
+    "Meta": {
+      "type": "object",
+      "required": [
+        "uuid",
+        "requester"
+      ],
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "example": "12312-12312-123-123-123"
+        },
+        "requester": {
+          "type": "string",
+          "example": "admin@domain.root"
+        }
+      }
+    },
+    "AutoReplyRequestAttributes": {
+      "type": "object",
+      "required": [
+        "attributes"
+      ],
+      "properties": {
+        "attributes": {
+          "$ref": "#/definitions/AutoReplyAttributes"
+        }
+      }
+    },
+    "AutoReplyAttributes": {
+      "type": "object",
+      "required": [
+        "email",
+        "method",
+        "message"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "user@domain.root"
+        },
+        "message": {
+          "type": "string",
+          "example": "I am out of Office"
+        },
+        "method": {
+          "type": "string",
+          "example": "enable"
+        }
+      }
+    },
+    "Result": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "RowKey": {
+          "type": "string"
+        },
+        "PartitionKey": {
+          "type": "string"
+        },
+        "requester": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "detail": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "host": "testnetssandbox.azurewebsites.net",
+  "basePath": "/api",
+  "securityDefinitions": {
+    "apikeyQuery": {
+      "type": "apiKey",
+      "name": "code",
+      "in": "query"
+    }
+  }
+}
