@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "description": "Hexatown Office 365 API",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "title": "Hexatown Office 365",
     "contact": {
       "email": "niels@365admin.net"
@@ -29,7 +29,7 @@
           "admins"
         ],
         "summary": "Manage the auto reply settings of a given mailbox",
-        "operationId": "autoReply",
+        "operationId": "AutoReply",
         "description": "You can set or remove the out of office message\n",
         "consumes": [
           "application/json"
@@ -65,6 +65,49 @@
           }
         }
       }
+    },
+    "/o365-mfareset": {
+      "post": {
+        "tags": [
+          "admins"
+        ],
+        "summary": "Manage the Multi Factor Authentiation state of a user",
+        "operationId": "MfaReset",
+        "description": "You can force a user to enter new MFA settings\n",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "MFA controls",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MfaResetRequest"
+            }
+          }
+        ],
+        "security": [
+          {
+            "apikeyQuery": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Result of operation",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -77,6 +120,21 @@
       "properties": {
         "data": {
           "$ref": "#/definitions/AutoReplyRequestAttributes"
+        },
+        "meta": {
+          "$ref": "#/definitions/Meta"
+        }
+      }
+    },
+    "MfaResetRequest": {
+      "type": "object",
+      "required": [
+        "data",
+        "meta"
+      ],
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/MfaRequestAttributes"
         },
         "meta": {
           "$ref": "#/definitions/Meta"
@@ -129,7 +187,46 @@
         },
         "method": {
           "type": "string",
+          "enum": [
+            "enable",
+            "disable"
+          ],
+          "default": "enable",
           "example": "enable"
+        }
+      }
+    },
+    "MfaRequestAttributes": {
+      "type": "object",
+      "required": [
+        "attributes"
+      ],
+      "properties": {
+        "attributes": {
+          "$ref": "#/definitions/MfaAttributes"
+        }
+      }
+    },
+    "MfaAttributes": {
+      "type": "object",
+      "required": [
+        "email",
+        "method"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "user@domain.root"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "enable",
+            "disable",
+            "reset"
+          ],
+          "default": "reset",
+          "example": "reset"
         }
       }
     },
