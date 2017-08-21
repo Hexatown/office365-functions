@@ -172,7 +172,7 @@
   "schemes": [
     "https"
   ],
-  "host": "testnetssandbox.azurewebsites.net",
+  "host": "nets-hexatown-office365-functions.azurewebsites.net",
   "basePath": "/api",
   "securityDefinitions": {
     "apikeyQuery": {
