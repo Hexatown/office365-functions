@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "authLevel": "function",
-      "route": "api/ps/{resource}"
+      "route": "ps/{resource}"
     },
     {
       "name": "res",
