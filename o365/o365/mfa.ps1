@@ -1,0 +1,1 @@
+write-output ">>>>>>>>>>>>>>>>>>>>> FROM MFA file"
