@@ -1,23 +1,22 @@
 
-
 #
-# Query params           
+# Query params and variables        
 #
 
 $body = Get-Content $req -Raw -Encoding UTF8 | ConvertFrom-Json
-$method = $req_params_method_name
-
-
-
+$resource = $req_params_resource
+$action = $body.action
+$dir = $EXECUTION_CONTEXT_FUNCTIONDIRECTORY
 
 #
-# Output
+# Load init scripts
+# - Connect to Office 365
+# - Common helpers
 #
+. $($dir + "\resources\connect.ps1")
+. $($dir + "\utils\helpers.ps1")
 
-$result = @{}
-$result.uuid = "Hello there"
-$result.body = $body
-
-$json = ConvertTo-Json -InputObject $result
-
-Out-File -Encoding UTF8 -FilePath $res -inputObject $json
+#
+# Dynamically load needed script based on resource name
+#
+. $($dir + "\resources\" + $resource + ".ps1")

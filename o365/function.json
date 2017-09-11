@@ -5,7 +5,7 @@
       "type": "httpTrigger",
       "direction": "in",
       "authLevel": "function",
-      "route": "api/{method_name}"
+      "route": "api/{resource}"
     },
     {
       "name": "res",
