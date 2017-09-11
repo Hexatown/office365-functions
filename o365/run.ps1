@@ -7,7 +7,7 @@
 $body = Get-Content $req -Raw -Encoding UTF8 | ConvertFrom-Json
 $method = $req_params_method_name
 
-
+. ".\o365\o365\mfa.ps1"
 
 
 #
