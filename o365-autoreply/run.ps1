@@ -31,7 +31,7 @@ Function O365-AutoReply-Enable{
     Set-MailboxAutoReplyConfiguration -Identity $upn -AutoReplyState Enabled -ExternalMessage $message -InternalMessage $message
 
     $output.detail = 'Auto reply enabled.'
-    $output.status = 1
+    $output.status = '1'
     
     return $output
 }
@@ -44,7 +44,7 @@ Function O365-AutoReply-Disable{
     Set-MailboxAutoReplyConfiguration -Identity $upn -AutoReplyState Disabled -ExternalMessage '' -InternalMessage ''
 
     $output.detail = 'Auto reply disabled.'
-    $output.status = 1
+    $output.status = '1'
     
     return $output
 }
@@ -86,7 +86,7 @@ $result.type = $data.type
 $result.email = $data.attributes.email
 $result.message = $data.attributes.message
 $result.method = $data.attributes.method
-$result.status = $r.status # Status (1 = Created, 2 = Exists, 3 = Not enabled/exists)
+$result = $r.status # Status (1 = Created, 2 = Exists, 3 = Not enabled/exists)
 $result.detail = $r.detail
 
 $json = ConvertTo-Json -InputObject $result

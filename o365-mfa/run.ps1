@@ -38,10 +38,10 @@ Function O365-MFA-Reset{
         Set-MsolUser -UserPrincipalName $upn -StrongAuthenticationMethods @()
 
         $output.detail = 'Reset completed.'
-        $output.status = 1
+        $output.status = '1'
     }else{
         $output.detail = 'MFA not enabled!'
-        $output.status = 3
+        $output.status = '3'
     }
 
     return $output
@@ -55,7 +55,7 @@ Function O365-MFA-Enable{
 
     if(O365-MFA-Exists $msoluser){
 		$output.detail = 'MFA exists!'
-        $output.status = 2
+        $output.status = '2'
     }else{
 
         $mfobject = New-Object -TypeName Microsoft.Online.Administration.StrongAuthenticationRequirement
@@ -65,7 +65,7 @@ Function O365-MFA-Enable{
         Set-MsolUser -UserPrincipalName $upn -StrongAuthenticationRequirements @($mfauthenabled)
 
 		$output.detail = 'MFA enabled.'
-        $output.status = 1
+        $output.status = '1'
     }
 
     return $output
@@ -81,10 +81,10 @@ Function O365-MFA-Disable{
         Set-MsolUser -UserPrincipalName $upn -StrongAuthenticationRequirements @()
 
         $output.detail = 'MFA disabled.'
-        $output.status = 1
+        $output.status = '1'
     }else{
         $output.detail = 'MFA is already disabled!'
-        $output.status = 3
+        $output.status = '3'
     }
 
     return $output

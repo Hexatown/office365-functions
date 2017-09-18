@@ -42,8 +42,7 @@ Function O365-Mailbox-Create{
     $smbacl = Get-DistributionGroup -Identity ("smbacl-" + $upnAlias) -ErrorAction SilentlyContinue
     if($smbacl -ne $null){
         $output.detail = 'ACL group already exists!'
-        $output.status = 2
-
+        $output.status = '2'
         return $output
     }
 
@@ -51,7 +50,7 @@ Function O365-Mailbox-Create{
     $mailbox = Get-Mailbox  -Identity  $upn -ErrorAction SilentlyContinue
     if($mailbox -ne $null){
         $output.detail = 'Mailbox already exists!'
-        $output.status = 2
+        $output.status = '2'
 
         return $output
     }
@@ -78,7 +77,7 @@ Function O365-Mailbox-Create{
     }
 
     $output.detail = 'Mailbox created'
-    $output.status = 1
+    $output.status = '1'
 
     return $output
 }

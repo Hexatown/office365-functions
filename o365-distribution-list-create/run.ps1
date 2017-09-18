@@ -35,7 +35,7 @@ Function O365-Distribution-List-Create{
     $exists = Get-DistributionGroup -Identity ($upn) -ErrorAction SilentlyContinue
     if($exists -ne $null){
         $output.detail = 'DL exists!'
-        $output.status = 2
+        $output.status = '2'
 
         return $output
     }
@@ -43,7 +43,7 @@ Function O365-Distribution-List-Create{
     $dist = New-DistributionGroup -Alias ($upnAlias) -DisplayName ($name) -ManagedBy $owner -PrimarySmtpAddress $upn -CopyOwnerToMember -Name ($upn)
 
     $output.detail = 'DL created.'
-    $output.status = 1
+    $output.status = '1'
 
     return $output
 }
