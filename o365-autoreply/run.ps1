@@ -86,7 +86,7 @@ $result.type = $data.type
 $result.email = $data.attributes.email
 $result.message = $data.attributes.message
 $result.method = $data.attributes.method
-$result = $r.status # Status (1 = Created, 2 = Exists, 3 = Not enabled/exists)
+$result.status = $r.status # Status (1 = Created, 2 = Exists, 3 = Not enabled/exists)
 $result.detail = $r.detail
 
 $json = ConvertTo-Json -InputObject $result
