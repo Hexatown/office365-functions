@@ -29,10 +29,10 @@ Response:
 
 Status codes
 
-Code | Description 
---- | --- | ---
-*1* | Enabled
-*2* | Disabled
+| Code | Description    |
+| ---- | -------------- |
+| *1*  | Enabled        |
+| *2*  | Disabled       |
 
 ### Shared Mailbox
 
