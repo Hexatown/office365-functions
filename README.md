@@ -4,9 +4,9 @@ This is a library containing numerous functions (sub resource) which can be dire
 
 ### Out of Office
 
-Resource name: auto-reply
-Path: ps/auto-reply
-Actions: enable/disable
+Resource name: `auto-reply`  
+Path: `ps/auto-reply`  
+Actions: `enable` / `disable`
 
 Payload:
 ```json
@@ -16,6 +16,23 @@ Payload:
 	"action": "enable"
 }
 ```
+
+Response:
+```json
+{
+	"email": "your-email@domain.com",
+	"message": "Out of Office message",
+	"detail": "Auto reply enabled.",
+	"status": 1
+}
+```
+
+Status codes
+
+Code | Description 
+--- | --- | ---
+*1* | Enabled
+*2* | Disabled
 
 ### Shared Mailbox
 
