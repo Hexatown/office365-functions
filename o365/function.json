@@ -4,7 +4,8 @@
       "name": "req",
       "type": "httpTrigger",
       "direction": "in",
-      "authLevel": "function"
+      "authLevel": "function",
+      "route": "ps/{resource}"
     },
     {
       "name": "res",
