@@ -28,6 +28,8 @@ Function O365-AutoReply-Enable{
 
     $output   = @{}
     
+    #todo: errorhandling
+    #if invalid identity then ??
     Set-MailboxAutoReplyConfiguration -Identity $upn -AutoReplyState Enabled -ExternalMessage $message -InternalMessage $message
 
     $output.detail = 'Auto reply enabled.'
